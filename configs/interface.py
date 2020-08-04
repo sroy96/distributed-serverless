@@ -23,5 +23,5 @@ class HandlerInterface(object):
         raise NotImplementedError
 
     @abstractmethod
-    def get_data(self, request_id, task_id):
+    def business_data(self, data):
         raise NotImplementedError

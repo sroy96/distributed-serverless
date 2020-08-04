@@ -19,13 +19,13 @@ class DataHandler(object):
             try:
                 body = json.loads(raw_message["body"])
                 data = JoinUs.from_join_request(body)
-                print("==>Data retrieved<==", data.serialize())
-                self.class_handler(data=data,
+                print(f"==>Data retrieved for= {data.name} <==", data.serialize())
+                self.class_handler(data=data.serialize(),
                                    meta=self.meta,
                                    config=self.config).operate()
             except Exception as e:
                 error_flag = True
-                logger.error("Error in Batch Handler Message: ", exc_info=True)
+                logger.error("Error in Batch Handler Data: ", exc_info=True)
                 logger.error(traceback.format_exc())
 
 

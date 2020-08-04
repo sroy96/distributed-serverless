@@ -1,7 +1,4 @@
-import os
-import logging
-from enum import Enum, auto
-import pymongo
+import configs.app_constants
 from configs.interface import Queue
 
 STANDARD_DATE_FORMAT = "YYYY-MM-DD"
@@ -22,4 +19,8 @@ class MyQueues(Queue):
         return MyQueues(url)
 
 
-client = pymongo.MongoClient('example.com', ssl=True)
+db_config = {
+    "DB_URI": configs.app_constants.DB_URL,
+    "DB_NAME": configs.app_constants.DB_NAME,
+    "DATA_COLLECTION_NAME": configs.app_constants.DATA_COLLECTION_NAME
+}

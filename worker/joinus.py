@@ -33,7 +33,7 @@ class JoinUs(object):
         exceptions = raw_message.get("exceptions", [])
         request_id = raw_message["request_id"]
 
-        obj = cls(name, college_name, phone, consent, country, email, is_execution_success, exceptions,request_id)
+        obj = cls(name, college_name, phone, consent, country, email, is_execution_success, exceptions, request_id)
 
         return obj
 
