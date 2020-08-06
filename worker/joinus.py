@@ -45,7 +45,7 @@ class JoinUs(object):
 
     def serialize(self):
         return {
-            "request_no": self.request_id,
+            "request_id": self.request_id,
             "success": self.is_execution_success,
             "exception": self.exceptions,
             "data": {

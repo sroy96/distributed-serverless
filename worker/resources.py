@@ -5,8 +5,8 @@ STANDARD_DATE_FORMAT = "YYYY-MM-DD"
 
 
 class MyQueues(Queue):
-    REQUEST_QUEUE = f"https://sqs.ap-south-1.amazonaws.com/611334599981/-kflow-test-L1"
-    DEAD_LETTER_QUEUE = f"https://sqs.ap-south-1.amazonaws.com/611334599981/-kflow-test-L1"
+    REQUEST_QUEUE = f"https://sqs.ap-south-1.amazonaws.com/996119619820/flow_queue"
+    DEAD_LETTER_QUEUE = f"https://sqs.ap-south-1.amazonaws.com/996119619820/flow_queue"
 
     @staticmethod
     def from_arn(arn):

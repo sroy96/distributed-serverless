@@ -17,7 +17,7 @@ class DataHandler(object):
         error_flag = False
         for raw_message in self.event.get("Records"):
             try:
-                body = json.loads(raw_message["body"])
+                body = json.loads(raw_message["body"]) #body is string form
                 data = JoinUs.from_join_request(body)
                 print(f"==>Data retrieved for= {data.name} <==", data.serialize())
                 self.class_handler(data=data.serialize(),
