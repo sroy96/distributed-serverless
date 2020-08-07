@@ -241,5 +241,5 @@ $RECYCLE.BIN/
 
 */build/*
 */.aws-sam/*
-
+/events/
 # End of https://www.gitignore.io/api/osx,linux,python,windows,pycharm,visualstudiocode

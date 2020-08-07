@@ -1,32 +1,26 @@
-from . import logger
+from joinus import JoinUs
 import json
-import traceback
-from .joinus import JoinUs
 
 
 class DataHandler(object):
-    def __init__(self, class_handler, event, config, meta=None, ):
-        logger.debug(f"Creating Data Handler Object, from cls ===> {class_handler.__name__}")
+    def __init__(self, class_handler, event, config):
         self.class_handler = class_handler
         self.event = event
         self.config = config
-        self.meta = meta
 
     def process(self):
-        logger.info(f"Start Processing the {self.class_handler.__name__}")
-        error_flag = False
-        for raw_message in self.event.get("Records"):
+        print("============INVOKING PROCESS==============")
+        # logger.info(f"Start Processing the {self.class_handler.__name__}")
+        for raw_message in self.event.get('Records'):
             try:
-                body = json.loads(raw_message["body"]) #body is string form
-                data = JoinUs.from_join_request(body)
-                print(f"==>Data retrieved for= {data.name} <==", data.serialize())
-                self.class_handler(data=data.serialize(),
-                                   meta=self.meta,
-                                   config=self.config).operate()
+                message_body = raw_message['body']
+                data = JoinUs.from_join_request(message_body)
+                self.class_handler(data,
+                                   self.config).operate()
             except Exception as e:
-                error_flag = True
-                logger.error("Error in Batch Handler Data: ", exc_info=True)
-                logger.error(traceback.format_exc())
+                print("ERROR OCCURRED ......", e)
+                # logger.error("Error in Batch Handler Data: ", exc_info=True)
+                # logger.error(traceback.format_exc())
 
 
 class DataHandlerAWS(DataHandler):
@@ -43,8 +37,8 @@ class DataHandlerAWS(DataHandler):
         if not meta:
             meta = {}
 
-        meta.update({
-            "logDetails": log_details
-        })
+        # meta.update({
+        #     "logDetails": log_details
+        # })
 
-        super().__init__(meta=meta, **kwargs)
+        super().__init__(**kwargs)

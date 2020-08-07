@@ -4,7 +4,7 @@ Description: SQS -> Lambda -> DB
 
 Globals:
   Function:
-    Timeout: 60
+    Timeout: 30
 
 Resources:
   JoinUsFunction:
@@ -17,16 +17,16 @@ Resources:
       Role: arn:aws:iam::996119619820:role/sqs_lambda
       Events:
         JoinUsEvents:
-          Type: AWS::SQS::Queue
+          Type: SQS
           Properties:
             Queue: arn:aws:sqs:ap-south-1:996119619820:flow_queue
             BatchSize: 1
             Enabled: true
 
 Outputs:
-  JoinUsEvents:
-    Description: "API Gateway endpoint URL for Prod stage for Hello World function"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/joinus/"
   JoinUsFunction:
     Description: "JoinUsFunction Lambda Function ARN"
     Value: !GetAtt JoinUsFunction.Arn
+  JoinUsEvents:
+    Description: "JoinUsEvents ARN"
+    Value: !Sub JoinUsEvents.Arn

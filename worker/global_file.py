@@ -1,4 +1,4 @@
-from configs import status_constants
+import status_constants
 import json
 import pymongo
 
@@ -33,5 +33,6 @@ def json_deserializer(data: str):
 
 def get_db_object(config):
     mongo_connection = pymongo.MongoClient(config["DB_URI"])
-    mongo_db = mongo_connection.get_database(config["DB_NAME"])
-    return mongo_db
+    mongo_db = mongo_connection[config["DB_NAME"]]
+    mongo_db_collection = mongo_db[config["DATA_COLLECTION_NAME"]]
+    return mongo_db_collection

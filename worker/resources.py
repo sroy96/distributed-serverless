@@ -1,5 +1,5 @@
-import configs.app_constants
-from configs.interface import Queue
+import app_constants
+from interface import Queue
 
 STANDARD_DATE_FORMAT = "YYYY-MM-DD"
 
@@ -20,7 +20,7 @@ class MyQueues(Queue):
 
 
 db_config = {
-    "DB_URI": configs.app_constants.DB_URL,
-    "DB_NAME": configs.app_constants.DB_NAME,
-    "DATA_COLLECTION_NAME": configs.app_constants.DATA_COLLECTION_NAME
+    "DB_URI": app_constants.DB_URL,
+    "DB_NAME": app_constants.DB_NAME,
+    "DATA_COLLECTION_NAME": app_constants.DATA_COLLECTION_NAME
 }

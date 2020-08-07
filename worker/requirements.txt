@@ -1,1 +1,2 @@
 requests
+pymongo[tls,srv]==3.11.0

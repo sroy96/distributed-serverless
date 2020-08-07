@@ -1,3 +1,6 @@
+import json
+
+
 class JoinUs(object):
     def __init__(self,
                  request_id=None,
@@ -22,16 +25,18 @@ class JoinUs(object):
 
     @classmethod
     def from_join_request(cls, raw_message):
-        data = raw_message["data"]
+        raw_message_json = json.loads(raw_message)
+        print("RAW MESSAGE:", str(raw_message_json))
+        data = raw_message_json["data"]
         name = data.get("name")
         college_name = data.get("college_name")
         phone = data.get("phone")
         consent = data.get("consent")
         country = data.get("country")
         email = data.get("email")
-        is_execution_success = raw_message["success"]
-        exceptions = raw_message.get("exceptions", [])
-        request_id = raw_message["request_id"]
+        is_execution_success = raw_message_json["success"]
+        exceptions = raw_message_json.get("exceptions", [])
+        request_id = raw_message_json["request_id"]
 
         obj = cls(name, college_name, phone, consent, country, email, is_execution_success, exceptions, request_id)
 
