@@ -1,5 +1,5 @@
 from joinus import JoinUs
-import json
+import logging
 
 
 class DataHandler(object):
@@ -9,7 +9,7 @@ class DataHandler(object):
         self.config = config
 
     def process(self):
-        print("============INVOKING PROCESS==============")
+        logging.info("============INVOKING PROCESS==============")
         # logger.info(f"Start Processing the {self.class_handler.__name__}")
         for raw_message in self.event.get('Records'):
             try:
@@ -19,8 +19,8 @@ class DataHandler(object):
                                    self.config).operate()
             except Exception as e:
                 print("ERROR OCCURRED ......", e)
-                # logger.error("Error in Batch Handler Data: ", exc_info=True)
-                # logger.error(traceback.format_exc())
+                logging.error("Error in Batch Handler Data: ", exc_info=True)
+
 
 
 class DataHandlerAWS(DataHandler):

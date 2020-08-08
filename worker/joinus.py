@@ -26,7 +26,6 @@ class JoinUs(object):
     @classmethod
     def from_join_request(cls, raw_message):
         raw_message_json = json.loads(raw_message)
-        print("RAW MESSAGE:", str(raw_message_json))
         data = raw_message_json["data"]
         name = data.get("name")
         college_name = data.get("college_name")
@@ -38,8 +37,20 @@ class JoinUs(object):
         exceptions = raw_message_json.get("exceptions", [])
         request_id = raw_message_json["request_id"]
 
-        obj = cls(name, college_name, phone, consent, country, email, is_execution_success, exceptions, request_id)
-
+        # obj = cls(name, college_name, phone, consent, country, email, is_execution_success, exceptions, request_id)
+        obj = {
+            "request_id": request_id,
+            "success": is_execution_success,
+            "exception": exceptions,
+            "data": {
+                "name": name,
+                "college_name": college_name,
+                "phone": phone,
+                "email": email,
+                "country": country,
+                "consent": consent
+            }
+        }
         return obj
 
     def update(self, is_success=None, exceptions=None):
